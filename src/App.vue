@@ -1,11 +1,9 @@
 <script>
-// import Home from './views/Home.vue';
-// import Personal from './views/Personal.vue'
-// import School from './views/School.vue'
+import VueCropper3 from './components/CutPicture.vue'
 
 export default {
   name: "App",
-  // components: { Home, Personal, School },
+  components: { VueCropper3 },
   setup() {},
 };
 
@@ -17,11 +15,10 @@ export default {
     <router-link active-class="active" to="/notice">通知</router-link>
     <router-link active-class="active" to="/score">成绩</router-link>
     <router-link active-class="active" to="/form">表单</router-link>
-    <router-link active-class="active" to="/user">我的</router-link>
+    <router-link active-class="active" to="/user/personal">我的</router-link>
   </div>
   <router-view></router-view>
-  <!-- <Home /> -->
-  <!-- <School></School> -->
+  <!-- <VueCropper3 /> -->
 
   
 </template>
@@ -38,7 +35,7 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 1;
+  z-index: 100;
 }
 .nav a {
   width: 0.75rem;
@@ -52,12 +49,12 @@ export default {
 .nav .active {
   color: #f2385a;
 }
-.title {
+/* .title {
   padding-top: 0.2rem;
   color: #f5a503;
   font-size: 0.2rem;
   text-align: center;
-}
+} */
 .content {
   margin: auto;
   margin-top: 0.2rem;
