@@ -34,7 +34,7 @@
 
 <script setup>
 import axios from "axios";
-import { ref, reactive, onMounted } from "vue";
+import { ref, onMounted } from "vue";
 
 onMounted(() => {
   getAddressArr();
