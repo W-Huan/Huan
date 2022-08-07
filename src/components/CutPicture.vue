@@ -89,13 +89,13 @@ const option = reactive({
   autoCropHeight: 120, //默认生成截图框高度
   fixed: true, //是否开启截图框宽高固定比例
   fixedNumber: [1000, 382], //截图框的宽高比例
-  full: true, //false按原比例裁切图片，不失真
+  full: false, //false按原比例裁切图片，不失真
   fixedBox: true, //固定截图框大小，不允许改变
   canMove: true, //上传图片是否可以移动
   canMoveBox: false, //截图框能否拖动
   original: false, //上传图片按照原始比例渲染
   centerBox: false, //截图框是否被限制在图片里面
-  high: true, //是否按照设备的dpr 输出等比例图片
+  high: false, //是否按照设备的dpr 输出等比例图片
   infoTrue: false, //true为展示真实输出图片宽高，false展示看到的截图框宽高
   maxImgSize: 3000, //限制图片最大宽度和高度
   enlarge: 1, //图片根据截图框输出比例倍数
@@ -148,13 +148,9 @@ function loadImage(e) {
 };
 // 完成截图
 function saveImage() {
-  //   this.$refs["cut-page"].style.display = "none";
-  croppers.value.getCropData((data) => {
+  croppers.value.getCropBlob((data) => {
     emit("showImage", data)
     exitImageCut()
-    // console.log(data);
-    // this.$refs.image.src = window.URL.createObjectURL(data);
-    // this.image = data;
   });
 };
 function exitImageCut() {

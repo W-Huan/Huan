@@ -51,9 +51,9 @@ const town = ref("乡镇/街道");
 const addressArr = ref([]);
 
 // 请求地址列表数据
-function getAddressArr(province, city, county) {
+async function getAddressArr(province, city, county) {
     // addressArr.value = [3,2,5,6];
-  axios
+  await axios
     .get("http://192.168.3.12:5000/data/address", {
       params: {
         province: province,
@@ -73,7 +73,7 @@ function getAddressArr(province, city, county) {
 }
 
 // 从地址列表中选择
-function selectAddress(value) {
+async function selectAddress(value) {
   if (flag === 0) {
     if (province.value !== value) {
       province.value = value;
@@ -81,7 +81,7 @@ function selectAddress(value) {
       county.value = "区/县";
       town.value = "乡镇/街道";
     }
-    getAddressArr(province.value);
+    await getAddressArr(province.value);
     if (this.addressArr.length === 1) {
       city.value = this.addressArr[0];
       getAddressArr(province.value, city.value);

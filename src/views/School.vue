@@ -62,7 +62,7 @@
         @showImageCutC="showImageCutC"
         @showImage="showImage"
       />
-      <img class="img" :src="image" alt="jpeg,jpg,png,bmp图片" />
+      <img class="img" src="src/assets/images/xingtan.png" ref="img" alt="jpeg,jpg,png,bmp图片" />
     </div>
     <div id="info" v-show="info">
       {{ info }}
@@ -83,17 +83,17 @@ const info = ref("");
 // 输入完成，关闭键盘
 function inputDone() {
   document.activeElement.blur(); //关闭手机软键盘
-};
+}
 function getInfo(val) {
   info.value = val;
-};
+}
 
 // 学校名称
 const name = ref("");
 const showSchool = ref(false);
 function showSchoolC(val) {
   showSchool.value = val;
-};
+}
 
 // 学校地址
 const address = ref("请输入学校地址");
@@ -101,22 +101,22 @@ const tailAddress = ref("");
 const showAddressArr = ref(false);
 function showAddressArrC(val) {
   showAddressArr.value = val;
-};
+}
 function getAddress(val) {
-  address.value = val
-  console.log(address.value)
-
+  address.value = val;
 }
 
 // 学校图片
-const image = ref("src/assets/images/xingtan.png");
+const image = ref("");
+const img = ref(null)
 const showImageCut = ref(false);
 function showImageCutC(val) {
   showImageCut.value = val;
-};
+}
 function showImage(data) {
   image.value = data;
-};
+  img.value.src = window.URL.createObjectURL(data)
+}
 
 // 上传数据
 function upload() {
@@ -138,7 +138,9 @@ function upload() {
     return;
   }
   let params = new FormData();
+  console.log("image", image.value)
   if (image.value) {
+    console.log("image")
     params.append("image", image.value);
   }
   params.append("name", name.value.trim());
@@ -151,12 +153,15 @@ function upload() {
     .then((response) => {
       console.log(response.data);
       info.value = response.data;
+      tid = setTimeout(() => {
+        info.value = "";
+      }, 2000);
     })
     .catch((error) => {
       console.log(error);
       info.value = error;
     });
-};
+}
 </script>
 
 <style scoped>
