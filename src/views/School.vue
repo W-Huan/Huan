@@ -1,6 +1,6 @@
 <template>
   <div class="top">
-    <a class="exit" href="personal.html">返回</a>
+    <a class="exit" href="#/user/personal">返回</a>
     <span class="title">添加学校</span>
     <span class="save" @click="upload">保存</span>
   </div>
@@ -66,7 +66,7 @@
   </div>
 </template>
 
-<script>
+<script >
 import axios from "axios";
 import SchoolList from "../components/SchoolList.vue";
 import AddressList from "../components/AddressList.vue";

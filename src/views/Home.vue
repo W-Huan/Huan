@@ -1,4 +1,5 @@
 <template>
+  <Nav />
   <UserHeader />
   <div class="content">
     <h3>师说</h3>
@@ -18,14 +19,9 @@
   </div>
 </template>
 
-<script>
-import UserHeader from "../components/UserHeader.vue";
-
-export default {
-  name: "Home",
-  components: { UserHeader },
-  setup() {},
-};
+<script setup>
+import Nav from "../components/Nav.vue"
+import UserHeader from "../components/UserHeader.vue"
 </script>
 
 <style scoped>
