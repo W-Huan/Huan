@@ -4,8 +4,8 @@
     <span class="title">添加学校</span>
     <span class="save" @click="upload">保存</span>
   </div>
-  <div class="info">
-    <div id="name">
+  <div class="content">
+    <div id="name" class="item">
       学校名称：
       <input
         type="text"
@@ -25,6 +25,7 @@
     />
     <div
       id="head-address"
+      class="item"
       tabindex="0"
       @click="showAddressArrC(true)"
       @blur="showAddressArrC(false)"
@@ -42,7 +43,7 @@
         @showAddressArrC="showAddressArrC"
       />
     </div>
-    <div id="tail-address">
+    <div id="tail-address" class="item">
       详细地址：
       <input
         type="text"
@@ -54,7 +55,7 @@
         @keyup.enter="inputDone"
       />
     </div>
-    <div id="image">
+    <div id="image" class="item">
       学校图片：
       <span class="data" @click="showImageCutC(true)"> 请上传学校图片 </span>
       <CutPicture
@@ -185,13 +186,13 @@ function upload() {
 .save {
   color: #f2385a;
 }
-.info {
+.content {
   background: #e9f1df;
   border-radius: 0.1rem;
   margin: 0 0.1rem;
   padding: 0 0.2rem;
-  /* position: relative; */
   width: 3.15rem;
+  height: calc(100vh - 0.82rem);
 }
 .data {
   width: 2.3rem;
@@ -208,10 +209,7 @@ function upload() {
   margin-top: 0.15rem;
   border: 1px solid #36b1bf;
 }
-#name,
-#head-address,
-#tail-address,
-#image {
+.item {
   padding: 0.15rem 0;
 }
 .address-wrap .data {
@@ -221,41 +219,10 @@ function upload() {
 }
 #info {
   position: absolute;
-  top: 1.05rem;
+  top: 1.1rem;
   width: 3.15rem;
   text-align: center;
   padding-bottom: 0.15rem;
   color: #f2385a;
-}
-input {
-  font-size: 0.16rem;
-  border: 0;
-  background: transparent;
-  color: #36b1bf;
-}
-/* 设置input激活时边框 */
-input:focus {
-  outline: 1px solid #36b1bf;
-}
-/* 设置input激活时提示文字颜色 */
-input:focus::-webkit-input-placeholder {
-  color: transparent;
-}
-/* 设置input提示文字颜色 */
-/* Safari，Chrome WebKit browsers */
-input::-webkit-input-placeholder {
-  color: #36b1bf;
-}
-/* 火狐 Mozilla Firefox 4 to 18  */
-input:-moz-placeholder {
-  color: #36b1bf;
-}
-/* 火狐 Mozilla Firefox 19+  */
-input::-moz-placeholder {
-  color: #36b1bf;
-}
-/* Internet Explorer 10+  */
-input:-ms-input-placeholder {
-  color: #36b1bf;
 }
 </style>

@@ -38,12 +38,4 @@
 .nav .active {
   color: #f2385a;
 }
-.content {
-  margin: auto;
-  margin-top: 0.2rem;
-  padding: 0.15rem 0.2rem;
-  background: #e9f1df;
-  width: 3.15rem;
-  border-radius: 0.1rem;
-}
 </style>

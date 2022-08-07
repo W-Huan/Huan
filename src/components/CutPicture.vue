@@ -32,14 +32,14 @@
       >
       </VueCropper>
     </div>
+    预览
     <div
       class="show-preview"
       :style="{
         width: previews.w + 'px',
         height: previews.h + 'px',
         overflow: 'hidden',
-        marginBottom: '0.2rem',
-        background: '#fff',
+        margin: '0.1rem 0',
       }"
     >
       <div :style="previews.div">

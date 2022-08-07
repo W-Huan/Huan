@@ -52,7 +52,6 @@ const addressArr = ref([]);
 
 // 请求地址列表数据
 async function getAddressArr(province, city, county) {
-    // addressArr.value = [3,2,5,6];
   await axios
     .get("http://192.168.3.12:5000/data/address", {
       params: {
@@ -63,12 +62,9 @@ async function getAddressArr(province, city, county) {
     })
     .then((response) => {
       addressArr.value = response.data.data;
-      // console.log(response.data)
-      // this.info = response.status
     })
     .catch((error) => {
       console.log(error);
-      // this.info = error
     });
 }
 

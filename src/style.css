@@ -1,21 +1,54 @@
 #app {
-    position: relative;
-    margin: auto;
-    padding-bottom: 4em;
-    width: 3.75rem;
-    background: #36b1bf;
+  position: relative;
+  margin: auto;
+  padding-bottom: 0.15rem;
+  /* overflow: hidden; */
+  width: 3.75rem;
+  min-height: calc(100vh - 00.15rem);
+  background: #36b1bf;
 }
 * {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 body {
-    color: #36b1bf;
-    font-size: 0.16rem;
+  color: #36b1bf;
+  font-size: 0.16rem;
 }
 a {
-    color: #36b1bf;
-    text-decoration: none;
-    /* 去除移动端点击时的默认背景 */
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  color: #36b1bf;
+  text-decoration: none;
+  /* 去除移动端点击时的默认背景 */
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+input {
+  font-size: 0.16rem;
+  border: 0;
+  background: transparent;
+  color: #36b1bf;
+}
+/* 设置input激活时边框 */
+input:focus {
+  outline: 1px solid #36b1bf;
+}
+/* 设置input激活时提示文字颜色 */
+input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+/* 设置input提示文字颜色 */
+/* Safari，Chrome WebKit browsers */
+input::-webkit-input-placeholder {
+  color: #36b1bf;
+}
+/* 火狐 Mozilla Firefox 4 to 18  */
+input:-moz-placeholder {
+  color: #36b1bf;
+}
+/* 火狐 Mozilla Firefox 19+  */
+input::-moz-placeholder {
+  color: #36b1bf;
+}
+/* Internet Explorer 10+  */
+input:-ms-input-placeholder {
+  color: #36b1bf;
 }

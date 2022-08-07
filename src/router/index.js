@@ -7,6 +7,8 @@ import Form from "../views/Form.vue";
 import User from "../views/User.vue";
 import Personal from "../views/Personal.vue";
 import School from "../views/School.vue";
+import Class from "../views/Class.vue";
+import Stuedent from "../views/Stuedent.vue"
 
 const routes = [
   {
@@ -50,6 +52,16 @@ const routes = [
             path: "school",
             component: School,
           },
+          {
+            name: "class",
+            path: "class",
+            component: Class,
+          },
+          {
+            name: "stuedent",
+            path: "stuedent",
+            component: Stuedent,
+          }
         ],
       },
     ],
