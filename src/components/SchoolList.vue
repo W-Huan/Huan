@@ -87,7 +87,7 @@ watch(
 #school-options {
   overflow-y: auto;
   width: 3.7rem;
-  height: calc(100vh - 2rem);
+  height: calc(100vh - 1.55rem);
 }
 #school-list .img {
   width: 3.15rem;

@@ -1,5 +1,5 @@
 <template>
-  <div ref="address" id="address">
+  <div id="address">
     <div class="exit-wrap">
       <span class="exit-btn" @click.stop="addressBlur">×</span>
     </div>
@@ -14,7 +14,7 @@
         <span @click="selectCounty">
           {{ county }}
         </span>
-        <span>
+        <span @click="selectTown">
           {{ town }}
         </span>
       </span>
@@ -34,7 +34,13 @@
 
 <script setup>
 import axios from "axios";
-import { ref, reactive } from "vue";
+import { ref, reactive, onMounted } from "vue";
+
+onMounted(() => {
+  getAddressArr();
+})
+
+const emit = defineEmits(["showAddressArrC", "getAddress"])
 
 let flag = 0;
 
@@ -42,8 +48,7 @@ const province = ref("省/直辖市");
 const city = ref("省辖市");
 const county = ref("区/县");
 const town = ref("乡镇/街道");
-
-const addressArr = ref([1, 2, 3, 4]);
+const addressArr = ref([]);
 
 // 请求地址列表数据
 function getAddressArr(province, city, county) {
@@ -76,10 +81,10 @@ function selectAddress(value) {
       county.value = "区/县";
       town.value = "乡镇/街道";
     }
-    this.getAddressArr(province.value);
+    getAddressArr(province.value);
     if (this.addressArr.length === 1) {
       city.value = this.addressArr[0];
-      this.getAddressArr(province.value, city.value);
+      getAddressArr(province.value, city.value);
       flag = 2;
     } else {
       flag = 1;
@@ -90,26 +95,26 @@ function selectAddress(value) {
       county.value = "区/县";
       town.value = "乡镇/街道";
     }
-    this.getAddressArr(province.value, city.value);
+    getAddressArr(province.value, city.value);
     flag = 2;
   } else if (flag === 2) {
     if (county.value !== value) {
       county.value = value;
       town.value = "乡镇/街道";
     }
-    this.getAddressArr(province.value, city.value, county.value);
+    getAddressArr(province.value, city.value, county.value);
     flag = 3;
   } else {
+    let address
     town.value = value;
-    // if (province.value === city.value) {
-    //   this.address = province.value + county.value + town.value;
-    // } else {
-    //   this.address = province.value + city.value + county.value + town.value;
-    // }
-    // this.$refs.address.style.display = "none";
+    if (province.value === city.value) {
+      address = province.value + county.value + town.value;
+    } else {
+      address = province.value + city.value + county.value + town.value;
+    }
+    emit("getAddress", address);
+    emit("showAddressArrC", false);
   }
-  console.log(flag)
-  console.log(this)
 }
 function selectProvince() {
   getAddressArr();
@@ -123,9 +128,13 @@ function selectCounty() {
   getAddressArr(province.value, city.value);
   flag = 2;
 }
+function selectTown() {
+  getAddressArr(province.value, city.value, county.value);
+  flag = 3;
+}
 
 function addressBlur() {
-  return
+  emit("showAddressArrC", false)
 }
 </script>
 
@@ -171,6 +180,7 @@ function addressBlur() {
 #address-options {
   overflow-y: auto;
   width: 3.4rem;
+  max-height: calc(100vh - 2.35rem);
 }
 #address hr {
   margin: 0.05rem 0;
