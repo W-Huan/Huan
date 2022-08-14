@@ -91,10 +91,11 @@ function showClassC() {
 .content {
   margin: auto;
   padding: 0 0.2rem;
-  background: #e9f1df;
+  /* background: #31353d; */
   width: 3.15rem;
   height: calc(100vh - 0.82rem);
   border-radius: 0.1rem;
+  /* color: #f5a503; */
 }
 .item {
   padding: 0.15rem 0;

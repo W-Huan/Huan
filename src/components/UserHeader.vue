@@ -1,23 +1,20 @@
-<script>
-import { reactive, toRefs } from "vue";
+<script setup>
+import { reactive, ref, toRefs } from "vue";
 
-export default {
-  name: 'UserHerder',
-  setup() {
-    const user = reactive({
-      name: "江离",
-      photo: "/src/assets/images/head.jpg",
-    });
+const name = ref("江离");
+const photo = ref("/src/assets/images/1803.jpg");
 
-    return {
-      ...toRefs(user),
-    };
-  },
-};
+const style = ref(`background: linear-gradient(
+    to top,
+    rgba(54, 177, 191, 1),
+    rgba(54, 177, 191, 0)
+  ),
+  url(${photo.value}) no-repeat 0px 0px;
+  background-size: 100% 100%;`);
 </script>
 
 <template>
-  <div class="top"></div>
+  <div class="top" :style="style"></div>
   <img class="photo" :src="photo" alt="photo" />
   <span class="user">{{ name }}</span>
 </template>
@@ -27,13 +24,13 @@ export default {
   margin: auto;
   height: 2rem;
   /* 设置渐变 */
-  background: linear-gradient(
+  /* background: linear-gradient(
       to top,
-      rgba(54, 177, 191, 0.6),
+      rgba(54, 177, 191, 1),
       rgba(54, 177, 191, 0)
     ),
-    url(/src/assets/images/head.jpg) no-repeat 0px 0px;
-  background-size: 100% 100%;
+    url(/src/assets/images/01ch.jpg) no-repeat 0px 0px; */
+  /* background-size: 100% 100%; */
   /* opacity: 0.5; */
   /* 设置模糊 */
   filter: blur(4px);
@@ -61,5 +58,4 @@ export default {
   text-align: center;
   z-index: 1;
 }
-
 </style>
