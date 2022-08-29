@@ -8,7 +8,8 @@ import User from "../views/User.vue";
 import Personal from "../views/Personal.vue";
 import School from "../views/School.vue";
 import Class from "../views/Class.vue";
-import Stuedent from "../views/Stuedent.vue"
+import Stuedent from "../views/Stuedent.vue";
+import Signin from "../views/Signin.vue"
 
 const routes = [
   {
@@ -46,6 +47,11 @@ const routes = [
             name: "personal",
             path: "personal",
             component: Personal,
+          },
+          {
+            name: "signin",
+            path: "login",
+            component: Signin,
           },
           {
             name: "school",

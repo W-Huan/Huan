@@ -16,5 +16,5 @@ const rootFontSize = width * 100 / 375;
 // 设置根字体大小
 document.documentElement.style.fontSize = rootFontSize + 'px';
 // 计算address块高度
-const appHeight = deviceHeight / rootFontSize
+// const appHeight = deviceHeight / rootFontSize
 // document.querySelector('#app').style.minHeight = (appHeight-0.15) + 'rem';

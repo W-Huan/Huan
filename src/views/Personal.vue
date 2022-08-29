@@ -21,13 +21,35 @@
       <span>校务处</span>
     </a>
   </div>
-  <a id="service" class="content" href="#">客服中心</a>
+  <a id="service" class="content dis-block" href="#">客服中心</a>
+  <a v-if="login" id="logout" class="content dis-block" @click="logout">注销</a>
+  <a v-else id="login" class="content dis-block" href="#/user/login">登录</a>
 </template>
 
 <script setup>
-import Nav from "../components/Nav.vue"
-import UserHeader from "../components/UserHeader.vue"
+import { ref, onMounted, inject } from "vue";
+import { useRouter } from "vue-router";
+import Nav from "../components/Nav.vue";
+import UserHeader from "../components/UserHeader.vue";
 
+const router = useRouter();
+const reload = inject('reload')
+
+const login = ref(false);
+
+onMounted(() => {
+  let data = localStorage.getItem("data");
+  if (data !== null) {
+    login.value = true;
+  }
+})
+
+function logout() {
+  localStorage.removeItem("data")
+  login.value = false;
+  reload()
+  // router.go(0)
+}
 </script>
 
 <style scoped>
@@ -46,8 +68,8 @@ import UserHeader from "../components/UserHeader.vue"
 .content a span {
   float: right;
 }
-#service {
-  margin-bottom: 3em;
+.dis-block {
+  /* margin-bottom: 3em; */
   display: block;
   text-align: center;
 }

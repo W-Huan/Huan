@@ -91,7 +91,7 @@ function showClassC() {
 .content {
   margin: auto;
   padding: 0 0.2rem;
-  /* background: #31353d; */
+  background: rgb(213, 235, 225);
   width: 3.15rem;
   height: calc(100vh - 0.82rem);
   border-radius: 0.1rem;

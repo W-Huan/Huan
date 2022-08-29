@@ -1,16 +1,28 @@
 <script setup>
-import { reactive, ref, toRefs } from "vue";
+import { ref, onMounted, computed } from "vue";
 
-const name = ref("江离");
-const photo = ref("/src/assets/images/1803.jpg");
+const name = ref("杏坛");
+const photo = ref("/src/assets/images/head.jpg");
 
-const style = ref(`background: linear-gradient(
+const style = computed(() => {
+  return `background: linear-gradient(
     to top,
     rgba(54, 177, 191, 1),
     rgba(54, 177, 191, 0)
   ),
   url(${photo.value}) no-repeat 0px 0px;
-  background-size: 100% 100%;`);
+  background-size: 100% 100%;`;
+});
+
+onMounted(() => {
+  let data = localStorage.getItem("data");
+  data = JSON.parse(data);
+  // console.log(data);
+  if (data !== null) {
+    name.value = data.username;
+    photo.value = data.photo;
+  }
+});
 </script>
 
 <template>
