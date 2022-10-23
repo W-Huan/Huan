@@ -10,6 +10,7 @@ import School from "../views/School.vue";
 import Class from "../views/Class.vue";
 import Stuedent from "../views/Stuedent.vue";
 import Signin from "../views/Signin.vue"
+import Role from "../views/Role.vue"
 
 const routes = [
   {
@@ -67,6 +68,11 @@ const routes = [
             name: "stuedent",
             path: "stuedent",
             component: Stuedent,
+          },
+          {
+            name: "role",
+            path: "role",
+            component: Role,
           }
         ],
       },

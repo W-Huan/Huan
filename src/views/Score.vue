@@ -4,7 +4,11 @@
 </template>
 
 <script setup>
+import { onMounted } from "vue";
 import Nav from "../components/Nav.vue";
+onMounted(() => {
+  
+});
 </script>
 
 <style scoped>

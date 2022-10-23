@@ -30,11 +30,14 @@ function singin() {
     })
     .then((response) => {
       let data = response.data;
-      if(data.msg === "success"){
-        localStorage.setItem("data", JSON.stringify(data));
-        router.push({name: "personal"})
+      if (data.msg === "success") {
+        localStorage.setItem("user", JSON.stringify(data.user));
+        // localStorage.setItem("token", data.token);
+        router.push({ name: "personal" });
+      }else{
+        console.log(data.msg);
       }
-      // console.log(data);
+      console.log(data);
     })
     .catch((error) => {
       console.log(error);

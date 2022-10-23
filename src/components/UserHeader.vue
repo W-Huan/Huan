@@ -15,12 +15,12 @@ const style = computed(() => {
 });
 
 onMounted(() => {
-  let data = localStorage.getItem("data");
-  data = JSON.parse(data);
-  // console.log(data);
-  if (data !== null) {
-    name.value = data.username;
-    photo.value = data.photo;
+  let user = localStorage.getItem("user");
+  user = JSON.parse(user);
+  // console.log(user);
+  if (user !== null) {
+    name.value = user.username;
+    photo.value = user.photo;
   }
 });
 </script>

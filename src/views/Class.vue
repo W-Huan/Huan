@@ -1,15 +1,18 @@
 <template>
   <div class="top">
     <a class="exit" href="#/user/personal">返回</a>
-    <span class="title">添加班级</span>
+    <span class="title">我的班级</span>
     <span class="save" @click="upload">保存</span>
   </div>
   <div class="content">
-    <div id="grade" class="item" @click="showGradeC">
+    <div class="item">我的班级</div>
+    <span v-for="cls in classArr" id="cls">{{ cls }}</span>
+    <div class="item">添加班级</div>
+    <div id="grade" class="items" @click="showGradeC">
       年级：
       <span class="data">{{ grade }}</span>
     </div>
-    <div id="class" class="item">
+    <div id="class" class="items">
       班级：
       <input
         type="text"
@@ -36,11 +39,21 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 
 function inputDone() {
   document.activeElement.blur(); //关闭手机软键盘
 }
+
+const classArr = ref([]);
+
+onMounted(() => {
+  let data = localStorage.getItem("data");
+  data = JSON.parse(data);
+  if (data !== null && data.class !== null) {
+    classArr.value = data.class;
+  }
+});
 
 const grades = ["一年级", "二年级", "三年级", "四年级", "五年级", "六年级"];
 const showGrade = ref(false);
@@ -48,7 +61,7 @@ const grade = ref("请输入年级编号");
 function selectGrade(val) {
   grade.value = val;
   showGrade.value = false;
-};
+}
 function showGradeC() {
   showGrade.value = true;
   showClass.value = false;
@@ -60,7 +73,7 @@ const classes = [...Array(20)].map((_, k) => ++k);
 function selectClass(val) {
   class_.value = val;
   showClass.value = false;
-};
+}
 function showClassC() {
   showClass.value = true;
   showGrade.value = false;
@@ -98,16 +111,18 @@ function showClassC() {
   /* color: #f5a503; */
 }
 .item {
-  padding: 0.15rem 0;
+  padding-top: 0.15rem;
 }
 .data {
   width: 2.3rem;
   float: right;
   text-align: right;
 }
-
+#cls {
+  display: block;
+}
 ul {
-  margin-top: 20vh;
+  margin-top: 0.15rem;
   height: calc(6em + 0.7rem);
   overflow-y: auto;
 }

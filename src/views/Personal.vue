@@ -5,7 +5,7 @@
     <a href="#/user/school">
       我的学校
       <span>&nbsp;&nbsp;></span>
-      <span>实验小学</span>
+      <span>{{ school }}</span>
     </a>
     <a href="#/user/class">
       我的班级
@@ -15,10 +15,10 @@
       我的学生
       <span>></span>
     </a>
-    <a href="#">
+    <a href="#/user/role">
       我的角色
       <span>&nbsp;&nbsp;></span>
-      <span>校务处</span>
+      <span>{{ role }}</span>
     </a>
   </div>
   <a id="service" class="content dis-block" href="#">客服中心</a>
@@ -28,26 +28,57 @@
 
 <script setup>
 import { ref, onMounted, inject } from "vue";
-import { useRouter } from "vue-router";
+// import { useRouter } from "vue-router";
+import axios from "axios";
 import Nav from "../components/Nav.vue";
 import UserHeader from "../components/UserHeader.vue";
 
-const router = useRouter();
-const reload = inject('reload')
+// const router = useRouter();
+const reload = inject("reload");
 
 const login = ref(false);
 
+const school = ref("");
+const role = ref("");
+
 onMounted(() => {
-  let data = localStorage.getItem("data");
-  if (data !== null) {
-    login.value = true;
+  let user = localStorage.getItem("user");
+  user = JSON.parse(user);
+  if (user !== null && user.token !== null) {
+    let data = localStorage.getItem("data");
+    data = JSON.parse(data);
+    if (data !== null && data.name === user.username) {
+      school.value = data.school;
+      role.value = data.role;
+      login.value = true;
+    } else {
+      axios
+        .get("http://192.168.3.12:5000/user/signin", {
+          params: {
+            token: user.token,
+          },
+        })
+        .then((response) => {
+          let data = response.data;
+          console.log(data);
+          if (data.msg === "success") {
+            localStorage.setItem("data", JSON.stringify(data.info));
+            school.value = data.info.school;
+            role.value = data.info.role;
+            login.value = true;
+          } else {
+            console.log(data.msg);
+          }
+        });
+    }
   }
-})
+});
 
 function logout() {
-  localStorage.removeItem("data")
+  localStorage.removeItem("user");
+  localStorage.removeItem("data");
   login.value = false;
-  reload()
+  reload();
   // router.go(0)
 }
 </script>
